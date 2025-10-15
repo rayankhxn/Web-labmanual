@@ -1,0 +1,8 @@
+#main-title { color: blue; text-decoration: underline; }
+.highlight { background-color: palegreen; font-style: italic; }
+ul li:first-child { font-weight: bold; }
+a:hover { color: lightcoral; }
+p::first-letter { font-size: 66px; color: green; }
+img { border: 2px solid black; width: 200px; }
+div>ul>li{background-color: red;color: purple;
+}
