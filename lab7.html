@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Tasks - JavaScript</title>
+</head>
+<body>
+
+
+    <button onclick="task1()">Task 1: Name & Registration</button>
+
+   
+    <button onclick="task2()">Task 2: Arithmetic and Comparison</button>
+
+    <script>
+      
+        function task1() {
+
+
+            let name = prompt("Enter your Name:");
+            let reg = prompt("Enter your Registration ID:");
+
+           
+            alert("Name: " + name + "\nRegistration ID: " + reg);
+
+           
+            console.log("Name:", name, "Type:", typeof name);
+            console.log("Registration ID:", reg, "Type:", typeof reg);
+        }
+
+
+
+        function task2() {
+
+          
+            let num1 = prompt("Enter first number:");
+            let num2 = prompt("Enter second number:");
+
+          
+            num1 = Number(num1);
+            num2 = Number(num2);
+
+          
+            let sum = num1 + num2;
+            let diff = num1 - num2;
+            let prod = num1 * num2;
+            let quot = num1 / num2;
+            let comp = num1 > num2;
+
+           
+            alert(
+                "Results:\n" +
+                "Sum = " + sum + "\n" +
+                "Difference = " + diff + "\n" +
+                "Product = " + prod + "\n" +
+                "Quotient = " + quot + "\n" +
+                "Is num1 > num2? : " + comp
+            );
+
+
+            console.log("Num1:", num1, "Type:", typeof num1);
+            console.log("Num2:", num2, "Type:", typeof num2);
+            console.log("Sum:", sum);
+            console.log("Difference:", diff);
+            console.log("Product:", prod);
+            console.log("Quotient:", quot);
+            console.log("Comparison (num1 > num2):", comp);
+        }
+    </script>
+
+</body>
+</html>
