@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lab 9 – Callback Functions & Advanced Interaction</title>
+
+<style>
+    body {
+        font-family: Arial;
+        padding: 20px;
+        text-align: center;
+        background: #f2f2f2;
+    }
+
+    .box, .ball {
+        margin: 20px auto;
+        transition: 0.5s ease;
+    }
+
+    .box {
+        width: 150px;
+        height: 150px;
+        background: steelblue;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .ball {
+        width: 70px;
+        height: 70px;
+        background: crimson;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 8px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Lab 9 – Implementing Advanced Interaction Logic Using Callbacks</h1>
+
+<!-- ========================================================= -->
+<!-- TASK 1: MULTIPLE INTERACTIVE ELEMENTS                     -->
+<!-- ========================================================= -->
+<h2>Task 1: Multiple Interactions</h2>
+
+<button onclick="showAlert()">Show Alert</button>
+<button onclick="changeBG()">Change Background</button>
+<button onclick="increaseCounter()">Increase Counter</button>
+
+<h3 id="counter">0</h3>
+
+
+<!-- ========================================================= -->
+<!-- TASK 2: CALLBACK FUNCTIONS (SEPARATE)                     -->
+<!-- ========================================================= -->
+<h2>Task 2: Callback Functions</h2>
+
+<div class="box" id="task2Box">
+    <p id="task2Text">This is Task 2 Box</p>
+</div>
+
+<button onclick="task2Run(changeTextTask2)">Change Box Text</button>
+<button onclick="task2Run(changeColorTask2)">Change Box Color</button>
+
+
+<!-- ========================================================= -->
+<!-- TASK 3: HIGHER ORDER FUNCTION (SEPARATE)                  -->
+<!-- ========================================================= -->
+<h2>Task 3: Higher Order Function</h2>
+
+<div class="box" id="task3Box">
+    <p id="task3Text">This is Task 3 Box</p>
+</div>
+
+<button onclick="higherOrder(changeTextTask3)">Change Text</button>
+<button onclick="higherOrder(changeColorTask3)">Change Color</button>
+
+
+<!-- ========================================================= -->
+<!-- TASK 4: SWITCH / CONDITIONAL LOGIC                        -->
+<!-- ========================================================= -->
+<h2>Task 4: Switch Logic</h2>
+
+<select id="switchAction">
+    <option value="1">Turn Red</option>
+    <option value="2">Turn Green</option>
+    <option value="3">Turn Blue</option>
+</select>
+
+<button onclick="applySwitch()">Apply Switch Action</button>
+
+
+<!-- ========================================================= -->
+<!-- TASK 5: MODULAR FUNCTION DESIGN                           -->
+<!-- ========================================================= -->
+<h2>Task 5: Modular JavaScript Design</h2>
+
+<button onclick="BoxController.grow()">Grow Box</button>
+<button onclick="BoxController.shrink()">Shrink Box</button>
+<button onclick="BoxController.randomColor()">Random Color</button>
+
+
+<!-- ========================================================= -->
+<!-- TASK 6: CREATIVE ANIMATION                                -->
+<!-- ========================================================= -->
+<h2>Task 6: Creative Animation</h2>
+
+<div class="ball" id="ball"></div>
+
+<button onclick="moveBall()">Move Ball</button>
+<button onclick="shakeBall()">Shake Ball</button>
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT SECTION                                        -->
+<!-- ========================================================= -->
+<script>
+
+/* -------------------------------------------------------------
+   TASK 1 FUNCTIONS
+------------------------------------------------------------- */
+function showAlert() {
+    alert("Hello! This is Task 1.");
+}
+
+function changeBG() {
+    document.body.style.background =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+function increaseCounter() {
+    let counter = document.getElementById("counter");
+    counter.innerText = Number(counter.innerText) + 1;
+}
+
+
+/* -------------------------------------------------------------
+   TASK 2: CALLBACK FUNCTIONS (SEPARATE)
+------------------------------------------------------------- */
+function task2Run(callbackFunc) {
+    callbackFunc();
+}
+
+function changeTextTask2() {
+    document.getElementById("task2Text").innerText = "Text changed using Task 2 callback!";
+}
+
+function changeColorTask2() {
+    document.getElementById("task2Box").style.background =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+
+/* -------------------------------------------------------------
+   TASK 3: HIGHER ORDER FUNCTION (SEPARATE)
+------------------------------------------------------------- */
+function higherOrder(myFunction) {
+    myFunction(); // executes the callback
+}
+
+function changeTextTask3() {
+    document.getElementById("task3Text").innerText = "Task 3 Higher Order Function changed this text!";
+}
+
+function changeColorTask3() {
+    document.getElementById("task3Box").style.background =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+
+/* -------------------------------------------------------------
+   TASK 4 – SWITCH STATEMENT
+------------------------------------------------------------- */
+function applySwitch() {
+    let value = document.getElementById("switchAction").value;
+    let box = document.getElementById("task2Box"); // any box is fine
+
+    switch(value) {
+        case "1": box.style.background = "red"; break;
+        case "2": box.style.background = "green"; break;
+        case "3": box.style.background = "blue"; break;
+    }
+}
+
+
+/* -------------------------------------------------------------
+   TASK 5 – MODULAR DESIGN
+------------------------------------------------------------- */
+const box = document.getElementById("task2Box");
+
+const BoxController = {
+    grow() {
+        box.style.width = box.offsetWidth + 20 + "px";
+        box.style.height = box.offsetHeight + 20 + "px";
+    },
+
+    shrink() {
+        if (box.offsetWidth > 60) {
+            box.style.width = box.offsetWidth - 20 + "px";
+            box.style.height = box.offsetHeight - 20 + "px";
+        }
+    },
+
+    randomColor() {
+        box.style.background =
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+};
+
+
+/* -------------------------------------------------------------
+   TASK 6 – CREATIVE ANIMATION
+------------------------------------------------------------- */
+function moveBall() {
+    const ball = document.getElementById("ball");
+    ball.style.left = Math.random() * 300 + "px";
+    ball.style.top = Math.random() * 300 + "px";
+}
+
+function shakeBall() {
+    const ball = document.getElementById("ball");
+    ball.style.transform = "translateX(20px)";
+    setTimeout(() => ball.style.transform = "translateX(-20px)", 200);
+    setTimeout(() => ball.style.transform = "translateX(0px)", 400);
+}
+
+</script>
+
+</body>
+</html>
